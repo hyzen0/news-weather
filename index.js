@@ -19,11 +19,8 @@ app.use(bodyParser.json());
 
 // Load routes
 const authRouter = require("./api/auth.route");
-const blogRouter = require("./api/blog.route");
-const profileRouter = require("./api/profile.route");
-const schoolRouter = require("./api/school.route");
-const userRouter = require("./api/user.route");
-const ngoRouter = require("./api/ngo.route");
+const newsRouter = require("./api/news.route");
+const weatherRouter = require("./api/weather.route");
 
 // Dev Logging Middleware
 if (process.env.NODE_ENV === "development") {
@@ -36,11 +33,8 @@ app.use("/", res => {
   console.log("working");
 });
 app.use("/api", authRouter);
-app.use("/api/blogs", blogRouter);
-app.use("/api/profile", profileRouter);
-app.use("/api/schools", schoolRouter);
-app.use("/api", userRouter);
-app.use("/api/ngo", ngoRouter);
+app.use("/api/news", newsRouter);
+app.use("/api/weather", weatherRouter);
 
 app.use((req, res) => {
   res.status(404).json({
