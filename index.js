@@ -19,7 +19,7 @@ app.use(bodyparser.json());
 
 //Load Routes
 const auth = require("./api/auth.route");
-const news = require("./api/news.route.js");
+const news = require("./api/news.route");
 const weather = require("./api/weather.route");
 
 app.use(passport.initialize());
@@ -30,8 +30,8 @@ app.get("/", (req, res) => {
   res.send("Working");
 });
 
-app.use("/api/auth", auth);
-// app.use("/api/news", news);
+app.use("/api", auth);
+app.use("/api", news);
 // app.use("/api/weather", weather);
 
 const port = process.env.PORT || 3000;
