@@ -19,6 +19,7 @@ WEATHERK=key_from_openweathermap.org
 ## Initialize
 
 ```shell
+$ git clone https://github.com/hyzen0/news-weather.git
 $ npm i
 ```
 
