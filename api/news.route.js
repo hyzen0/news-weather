@@ -1,6 +1,5 @@
 const express = require("express");
 const axios = require("axios");
-const { title } = require("process");
 const router = express.Router();
 const passport = require("passport");
 
@@ -9,15 +8,21 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
-      const news = await axios.get(
+      const { data } = await axios.get(
         `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWSK}`
       );
-      a = news.data.articles;
-      res = a.map(k => {
-        console.log("Headline=>   " + k.title + "   \n");
+
+      res.send({
+        count: data.totalResults,
+        data: data.articles.map(q => {
+          return {
+            headline: q.title,
+            link: q.url,
+          };
+        }),
       });
     } catch (error) {
-      return console.log(error);
+      res.send(error);
     }
   }
 );
@@ -29,15 +34,21 @@ router.post(
     let search = req.body.search;
 
     try {
-      const news = await axios.get(
+      const { data } = await axios.get(
         `https://newsapi.org/v2/everything?q=${search}&from=2021-08-30&sortBy=popularity&apiKey=${process.env.NEWSK}`
       );
-      a = news.data.articles;
-      res = a.map(k => {
-        console.log("Headline=>   " + k.title + "   \n");
+
+      res.send({
+        count: data.totalResults,
+        data: data.articles.map(q => {
+          return {
+            headline: q.title,
+            link: q.url,
+          };
+        }),
       });
     } catch (err) {
-      console.log(err);
+      res.send(err);
     }
   }
 );
