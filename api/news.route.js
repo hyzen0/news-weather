@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const { title } = require("process");
 const router = express.Router();
+const passport = require("passport");
 
 router.get(
   "/news",
