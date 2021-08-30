@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 
 app.use("/api", auth);
 app.use("/api", news);
-// app.use("/api/weather", weather);
+app.use("/api", weather);
 
 const port = process.env.PORT || 3000;
 
